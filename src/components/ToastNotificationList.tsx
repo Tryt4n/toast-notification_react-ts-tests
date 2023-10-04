@@ -1,3 +1,5 @@
+// React
+import { createPortal } from "react-dom";
 // Context
 import { useToastNotificationValue } from "../context/useToastNotification";
 // Components
@@ -18,7 +20,7 @@ export default function ToastNotificationList({
 }: ToastNotificationPlacementType) {
   const state = useToastNotificationValue();
 
-  return (
+  return createPortal(
     <>
       {state.length > 0 && (
         <div className={`toast-container ${placement}`}>
@@ -31,6 +33,7 @@ export default function ToastNotificationList({
           ))}
         </div>
       )}
-    </>
+    </>,
+    document.body
   );
 }
